@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# Only apps should have lockfiles
+yarn.lock
+package-lock.json
