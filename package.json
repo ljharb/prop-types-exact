@@ -4,6 +4,10 @@
   "description": "For use with React PropTypes. Will error on any prop not explicitly specified.",
   "main": "index.js",
   "scripts": {
+    "prepublish": "not-in-publish || npm run build",
+    "clean": "rimraf build",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir build --source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +29,16 @@
   "bugs": {
     "url": "https://github.com/airbnb/prop-types-exact/issues"
   },
-  "homepage": "https://github.com/airbnb/prop-types-exact#readme"
+  "homepage": "https://github.com/airbnb/prop-types-exact#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-replace-object-assign": "^0.2.1",
+    "babel-preset-airbnb": "^2.2.3",
+    "in-publish": "^2.0.0",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "object.assign": "^4.0.4"
+  }
 }
