@@ -1,0 +1,29 @@
+{
+  "name": "prop-types-exact",
+  "version": "0.0.0",
+  "description": "For use with React PropTypes. Will error on any prop not explicitly specified.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/prop-types-exact.git"
+  },
+  "keywords": [
+    "react",
+    "propTypes",
+    "airbnb",
+    "prop",
+    "types",
+    "validator",
+    "validation",
+    "exact"
+  ],
+  "author": "Jordan Harband <ljharb@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/prop-types-exact/issues"
+  },
+  "homepage": "https://github.com/airbnb/prop-types-exact#readme"
+}
