@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "has": "^1.0.1",
+    "has-symbols": "^1.0.0",
     "object.assign": "^4.0.4"
   }
 }

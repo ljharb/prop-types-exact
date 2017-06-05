@@ -6,6 +6,16 @@ import exact from '../';
 
 import callValidator from './helpers/callValidator';
 
+function stringSort(a, b) {
+  if (typeof a !== 'string') {
+    return 1;
+  }
+  if (typeof b !== 'string') {
+    return -1;
+  }
+  return b.localeCompare(a);
+}
+
 describe('exact', () => {
   let specialProperty;
   before(() => {
@@ -42,7 +52,9 @@ describe('exact', () => {
   it('adds one extra key', () => {
     const propTypes = { a: 1, b: 2, c: 3 };
     const result = exact(propTypes);
-    expect(ownKeys(result)).to.eql(ownKeys(propTypes).concat(specialProperty));
+    const resultOwnKeys = ownKeys(result).sort(stringSort);
+    const propTypesOwnKeys = ownKeys(propTypes).concat(specialProperty).sort(stringSort);
+    expect(resultOwnKeys).to.eql(propTypesOwnKeys);
   });
 
   it('allows for merging of propTypes that have been processed', () => {
