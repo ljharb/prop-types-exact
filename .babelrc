@@ -3,5 +3,10 @@
   "plugins": [
     ["transform-replace-object-assign", "object.assign"],
     "add-module-exports",
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["istanbul"],
+    },
+  },
 }

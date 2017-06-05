@@ -5,11 +5,15 @@
   "main": "build",
   "scripts": {
     "prepublish": "safe-publish-latest && (not-in-publish || npm run build)",
-    "clean": "rimraf build",
-    "prebuild": "npm run clean",
+    "clean": "npm run clean:build && npm run clean:coverage",
+    "clean:build": "rimraf build",
+    "prebuild": "npm run clean:build",
     "build": "babel src --out-dir build --source-maps",
     "lint": "eslint .",
     "mocha": "mocha --recursive test/helpers/_failTestsOnErrors",
+    "clean:cover": "rimraf coverage",
+    "precoverage": "NODE_ENV=test npm run build && npm run clean:cover",
+    "coverage": "nyc --show-process-tree npm run --silent mocha test -- --reporter=dot",
     "tests-only": "npm run mocha test",
     "pretest": "npm run lint",
     "test": "npm run tests-only"
@@ -37,6 +41,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-transform-replace-object-assign": "^0.2.1",
     "babel-preset-airbnb": "^2.2.3",
     "chai": "^4.0.1",
@@ -47,6 +52,7 @@
     "eslint-plugin-react": "^7.0.1",
     "in-publish": "^2.0.0",
     "mocha": "^3.4.2",
+    "nyc": "^11.0.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "rimraf": "^2.6.1",
