@@ -1,13 +1,13 @@
 import { expect } from 'chai';
 import React from 'react';
 
-import forbidExtraProps from '../';
+import exact from '../';
 
 import callValidator from './helpers/callValidator';
 
 const zeroWidthSpace = '\u200b';
 
-describe('forbidExtraProps', () => {
+describe('exact', () => {
   function assertPasses(validator, element, propName, componentName) {
     expect(callValidator(validator, element, propName, componentName)).to.equal(null);
   }
@@ -17,32 +17,32 @@ describe('forbidExtraProps', () => {
   }
 
   it('throws when the given propTypes is not an object', () => {
-    expect(() => forbidExtraProps()).to.throw(TypeError);
-    expect(() => forbidExtraProps(undefined)).to.throw(TypeError);
-    expect(() => forbidExtraProps(null)).to.throw(TypeError);
-    expect(() => forbidExtraProps('')).to.throw(TypeError);
-    expect(() => forbidExtraProps(42)).to.throw(TypeError);
-    expect(() => forbidExtraProps(true)).to.throw(TypeError);
-    expect(() => forbidExtraProps(false)).to.throw(TypeError);
-    expect(() => forbidExtraProps(() => {})).to.throw(TypeError);
+    expect(() => exact()).to.throw(TypeError);
+    expect(() => exact(undefined)).to.throw(TypeError);
+    expect(() => exact(null)).to.throw(TypeError);
+    expect(() => exact('')).to.throw(TypeError);
+    expect(() => exact(42)).to.throw(TypeError);
+    expect(() => exact(true)).to.throw(TypeError);
+    expect(() => exact(false)).to.throw(TypeError);
+    expect(() => exact(() => {})).to.throw(TypeError);
   });
 
   it('throws when the given propTypes has the magic property', () => {
-    expect(() => forbidExtraProps({ [zeroWidthSpace]: true })).to.throw(TypeError);
+    expect(() => exact({ [zeroWidthSpace]: true })).to.throw(TypeError);
   });
 
   it('returns an object', () => {
-    expect(typeof forbidExtraProps({})).to.equal('object');
+    expect(typeof exact({})).to.equal('object');
   });
 
   it('adds one extra key', () => {
     const propTypes = { a: 1, b: 2, c: 3 };
-    const result = forbidExtraProps(propTypes);
+    const result = exact(propTypes);
     expect(Object.keys(result)).to.eql(Object.keys(propTypes).concat(zeroWidthSpace));
   });
 
   it('allows for merging of propTypes that have been processed', () => {
-    expect(() => forbidExtraProps(forbidExtraProps({}))).not.to.throw();
+    expect(() => exact(exact({}))).not.to.throw();
   });
 
   describe('forbid()', () => {
@@ -50,7 +50,7 @@ describe('forbidExtraProps', () => {
 
     let validator;
     beforeEach(() => {
-      validator = forbidExtraProps({ [knownProp]() {} })[zeroWidthSpace];
+      validator = exact({ [knownProp]() {} })[zeroWidthSpace];
     });
 
     it('adds a function', () => {

@@ -18,7 +18,7 @@ export default function forbidExtraProps(propTypes) {
     throw new TypeError('given propTypes must be an object');
   }
   if (has(propTypes, zeroWidthSpace) && !isBranded(propTypes[zeroWidthSpace])) {
-    throw new TypeError('Against all odds, you created a propType for a prop named after the zero-width space - which, sadly, conflicts with `forbidExtraProps`');
+    throw new TypeError('Against all odds, you created a propType for a prop named after the zero-width space - which, sadly, conflicts with `prop-types-exact`');
   }
 
   return {
