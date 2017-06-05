@@ -1,13 +1,17 @@
 import { expect } from 'chai';
 import React from 'react';
+import ownKeys from 'reflect.ownkeys';
 
 import exact from '../';
 
 import callValidator from './helpers/callValidator';
 
-const zeroWidthSpace = '\u200b';
-
 describe('exact', () => {
+  let specialProperty;
+  before(() => {
+    [specialProperty] = ownKeys(exact({}));
+  });
+
   function assertPasses(validator, element, propName, componentName) {
     expect(callValidator(validator, element, propName, componentName)).to.equal(null);
   }
@@ -28,7 +32,7 @@ describe('exact', () => {
   });
 
   it('throws when the given propTypes has the magic property', () => {
-    expect(() => exact({ [zeroWidthSpace]: true })).to.throw(TypeError);
+    expect(() => exact({ [specialProperty]: true })).to.throw(TypeError);
   });
 
   it('returns an object', () => {
@@ -38,7 +42,7 @@ describe('exact', () => {
   it('adds one extra key', () => {
     const propTypes = { a: 1, b: 2, c: 3 };
     const result = exact(propTypes);
-    expect(Object.keys(result)).to.eql(Object.keys(propTypes).concat(zeroWidthSpace));
+    expect(ownKeys(result)).to.eql(ownKeys(propTypes).concat(specialProperty));
   });
 
   it('allows for merging of propTypes that have been processed', () => {
@@ -50,7 +54,7 @@ describe('exact', () => {
 
     let validator;
     beforeEach(() => {
-      validator = exact({ [knownProp]() {} })[zeroWidthSpace];
+      validator = exact({ [knownProp]() {} })[specialProperty];
     });
 
     it('adds a function', () => {
@@ -58,15 +62,15 @@ describe('exact', () => {
     });
 
     it('passes when given no props', () => {
-      assertPasses(validator, <div />, zeroWidthSpace, 'Foo');
+      assertPasses(validator, <div />, specialProperty, 'Foo');
     });
 
     it('passes when given only known props', () => {
-      assertPasses(validator, <div {...{ [knownProp]: true }} />, zeroWidthSpace, 'Foo');
+      assertPasses(validator, <div {...{ [knownProp]: true }} />, specialProperty, 'Foo');
     });
 
     it('fails when given an unknown prop', () => {
-      assertFails(validator, <div unknown {...{ [knownProp]: true }} />, zeroWidthSpace, 'Foo');
+      assertFails(validator, <div unknown {...{ [knownProp]: true }} />, specialProperty, 'Foo');
     });
   });
 });

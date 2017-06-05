@@ -62,6 +62,7 @@
     "nyc": "^11.0.2",
     "prop-types": "^15.5.10",
     "react": "^0.13 || ^0.14 || ^15 || ^16.0.0-alpha.12",
+    "reflect.ownkeys": "^0.2.0",
     "rimraf": "^2.6.1",
     "safe-publish-latest": "^1.1.1"
   },
