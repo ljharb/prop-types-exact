@@ -61,5 +61,8 @@ typings/
 yarn.lock
 package-lock.json
 
+# istanbul output
+coverage/
+
 # babel output
 build/
