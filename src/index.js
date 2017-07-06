@@ -4,7 +4,7 @@ import hasSymbols from 'has-symbols';
 import isPlainObject from './helpers/isPlainObject';
 
 const zeroWidthSpace = '\u200b';
-const specialProperty = hasSymbols() ? Symbol('prop-types-exact special prop') : /* istanbul ignore next */ zeroWidthSpace;
+const specialProperty = `prop-types-exact: ${zeroWidthSpace}`;
 const semaphore = {};
 
 function brand(fn) {
@@ -20,11 +20,7 @@ export default function forbidExtraProps(propTypes) {
     throw new TypeError('given propTypes must be an object');
   }
   if (has(propTypes, specialProperty) && !isBranded(propTypes[specialProperty])) {
-    /* istanbul ignore if */
-    if (specialProperty === zeroWidthSpace) {
-      throw new TypeError('Against all odds, you created a propType for a prop named after the zero-width space - which, sadly, conflicts with `prop-types-exact`');
-    }
-    throw new TypeError('Somehow you’ve created a prop with the private symbol we use in `prop-types-exact` - this is not supported.');
+    throw new TypeError('Against all odds, you created a propType for a prop that uses both the zero-width space and our custom string - which, sadly, conflicts with `prop-types-exact`');
   }
 
   return {
