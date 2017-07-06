@@ -1,5 +1,3 @@
-/* eslint no-console: 0 */
-
 const consoleWarn = console.warn;
 const consoleError = console.error;
 

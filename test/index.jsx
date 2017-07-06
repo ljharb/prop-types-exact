@@ -61,28 +61,48 @@ describe('exact', () => {
     expect(() => exact(exact({}))).not.to.throw();
   });
 
-  describe('forbid()', () => {
+  describe('exact()', () => {
     const knownProp = 'a';
 
     let validator;
+    let Component;
     beforeEach(() => {
-      validator = exact({ [knownProp]() {} })[specialProperty];
+      Component = class Component extends React.Component {};
+      Component.propTypes = exact({ [knownProp]() {} });
+      validator = Component.propTypes[specialProperty];
     });
 
     it('adds a function', () => {
       expect(typeof validator).to.equal('function');
     });
 
+    it('passes via normal propTypes when given no props', () => {
+      return <Component />;
+    });
+
     it('passes when given no props', () => {
-      assertPasses(validator, <div />, specialProperty, 'Foo');
+      assertPasses(validator, <div />, knownProp, 'Foo div');
+    });
+
+    it('passes via normal propTypes when given only known props', () => {
+      return <Component {...{ [knownProp]: true }} />;
     });
 
     it('passes when given only known props', () => {
-      assertPasses(validator, <div {...{ [knownProp]: true }} />, specialProperty, 'Foo');
+      assertPasses(validator, <div {...{ [knownProp]: true }} />, knownProp, 'Foo div');
+    });
+
+    it('fails via normal propTypes', () => {
+      try {
+        <Component unknown {...{ [knownProp]: true }} />;
+      } catch (e) {
+        return;
+      }
+      throw new RangeError('did not fail');
     });
 
     it('fails when given an unknown prop', () => {
-      assertFails(validator, <div unknown {...{ [knownProp]: true }} />, specialProperty, 'Foo');
+      assertFails(validator, <div unknown {...{ [knownProp]: true }} />, knownProp, 'Foo div');
     });
   });
 });
