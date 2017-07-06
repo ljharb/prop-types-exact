@@ -1,5 +1,4 @@
 import has from 'has';
-import hasSymbols from 'has-symbols';
 
 import isPlainObject from './helpers/isPlainObject';
 
