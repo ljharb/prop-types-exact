@@ -9,7 +9,7 @@
     "clean:build": "rimraf build",
     "prebuild": "npm run clean:build",
     "build": "babel src --out-dir build --source-maps",
-    "lint": "eslint .",
+    "lint": "eslint --ext js,jsx src test",
     "mocha": "mocha --recursive test/helpers/_failTestsOnErrors",
     "clean:cover": "rimraf coverage",
     "precoverage": "NODE_ENV=test npm run build && npm run clean:cover",
