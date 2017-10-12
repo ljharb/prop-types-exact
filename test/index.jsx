@@ -67,7 +67,7 @@ describe('exact', () => {
     let validator;
     let Component;
     beforeEach(() => {
-      Component = class Component extends React.Component {};
+      Component = class Component extends React.Component {}; // eslint-disable-line no-shadow
       Component.propTypes = exact({ [knownProp]() {} });
       validator = Component.propTypes[specialProperty];
     });
@@ -76,17 +76,17 @@ describe('exact', () => {
       expect(typeof validator).to.equal('function');
     });
 
-    it('passes via normal propTypes when given no props', () => {
-      return <Component />;
-    });
+    it('passes via normal propTypes when given no props', () => (
+      <Component />
+    ));
 
     it('passes when given no props', () => {
       assertPasses(validator, <div />, knownProp, 'Foo div');
     });
 
-    it('passes via normal propTypes when given only known props', () => {
-      return <Component {...{ [knownProp]: true }} />;
-    });
+    it('passes via normal propTypes when given only known props', () => (
+      <Component {...{ [knownProp]: true }} />
+    ));
 
     it('passes when given only known props', () => {
       assertPasses(validator, <div {...{ [knownProp]: true }} />, knownProp, 'Foo div');
@@ -94,6 +94,7 @@ describe('exact', () => {
 
     it('fails via normal propTypes', () => {
       try {
+        // eslint-disable-next-line no-unused-expressions
         <Component unknown {...{ [knownProp]: true }} />;
       } catch (e) {
         return;
