@@ -13,7 +13,7 @@
     "mocha": "mocha test/helpers/_failTestsOnErrors",
     "clean:cover": "rimraf coverage",
     "precoverage": "NODE_ENV=test npm run build && npm run clean:cover",
-    "coverage": "nyc --show-process-tree npm run --silent mocha test -- --reporter=dot",
+    "coverage": "nyc --show-process-tree npm run --silent mocha 'test/**.{js,jsx}' -- --reporter=dot",
     "tests-only": "npm run mocha 'test/**.{js,jsx}'",
     "pretest": "npm run lint",
     "test": "npm run tests-only",
