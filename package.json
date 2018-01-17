@@ -15,15 +15,11 @@
     "precoverage": "NODE_ENV=test npm run build && npm run clean:coverage",
     "coverage": "nyc --show-process-tree npm run --silent tests-only -- --",
     "tests-only": "npm run tape './test/*.*'",
-    "pretest": "npm run build && npm run lint",
+    "pretest": "npm run pretravis && npm run lint",
     "test": "npm run tests-only",
-    "pretravis": "npm run build",
-    "travis": "npm run tests-only",
-    "react:clean": "rimraf node_modules/react node_modules/react-dom node_modules/react-addons-test-utils",
-    "react:13": "npm run react:clean && npm i --no-save react@0.13",
-    "react:14": "npm run react:clean && npm i --no-save react@0.14 react-dom@0.14 react-addons-test-utils@0.14",
-    "react:15": "npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15",
-    "react:16": "npm run react:clean && npm i --no-save react@16.0.0-alpha.12 react-dom@16.0.0-alpha.12"
+    "react": "enzyme-adapter-react-install 16",
+    "pretravis": "npm run build && npm run react",
+    "travis": "npm run tests-only"
   },
   "repository": {
     "type": "git",
@@ -51,6 +47,7 @@
     "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-replace-object-assign": "^1.0.0",
     "babel-preset-airbnb": "^2.4.0",
+    "enzyme-adapter-react-helper": "^1.2.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
