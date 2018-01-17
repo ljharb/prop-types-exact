@@ -4,7 +4,7 @@ import isPlainObject from './helpers/isPlainObject';
 
 const zeroWidthSpace = '\u200b';
 const specialProperty = `prop-types-exact: ${zeroWidthSpace}`;
-const semaphore = {};
+const semaphore = typeof Symbol === 'function' && typeof Symbol['for'] === 'function' ? Symbol['for'](specialProperty) : /* istanbul ignore next */ specialProperty;
 
 function brand(fn) {
   return Object.assign(fn, { [specialProperty]: semaphore });
