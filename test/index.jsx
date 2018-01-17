@@ -68,6 +68,8 @@ describe('exact', () => {
     let Component;
     beforeEach(() => {
       Component = class Component extends React.Component {}; // eslint-disable-line no-shadow
+      /* eslint react/no-unused-prop-types: 0 */
+      // TODO: ^ remove once eslint-plugin-react releases > v7.5.1
       Component.propTypes = exact({ [knownProp]() {} });
       validator = Component.propTypes[specialProperty];
     });
