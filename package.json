@@ -68,6 +68,6 @@
   },
   "dependencies": {
     "has": "^1.0.1",
-    "object.assign": "^4.0.4"
+    "object.assign": "^4.1.0"
   }
 }
