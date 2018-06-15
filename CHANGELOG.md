@@ -1,3 +1,13 @@
+1.2.0 / 2018-06-14
+==================
+  * [New] add `sloppy` import, for removing the "exact"ness on a propTypes object
+  * [Deps] update `has`
+  * [Dev Deps] update `babel-plugin-istanbul`, `babel-plugin-transform-replace-object-assign`, `eslint`, `eslint-plugin-import`, `eslint-plugin-react`, `nyc`, `prop-types`
+  * [Tests] on `node` `v10`
+  * [Tests] switch from mocha to tape, since mocha drops support for older nodes
+  * [Tests] on react 16
+  * [Tests] fix test scripts
+
 1.1.2 / 2018-01-17
 ==================
   * [Fix] replace the object semaphore with a global Symbol/string
