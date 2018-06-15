@@ -60,13 +60,13 @@
     "nyc": "^10.3.2",
     "prop-types": "^15.6.1",
     "react": "^0.13 || ^0.14 || ^15 || ^16.0.0-alpha.12",
-    "reflect.ownkeys": "^0.2.0",
     "rimraf": "^2.6.2",
     "safe-publish-latest": "^1.1.1",
     "tape": "^4.9.1"
   },
   "dependencies": {
     "has": "^1.0.3",
-    "object.assign": "^4.1.0"
+    "object.assign": "^4.1.0",
+    "reflect.ownkeys": "^0.2.0"
   }
 }
