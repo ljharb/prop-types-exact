@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import test from 'tape';
 import React from 'react';
 import ownKeys from 'reflect.ownkeys';
 
@@ -16,94 +16,110 @@ function stringSort(a, b) {
   return b.localeCompare(a);
 }
 
-describe('exact', () => {
-  let specialProperty;
-  before(() => {
-    [specialProperty] = ownKeys(exact({}));
-  });
+test('exact', (t) => {
+  const [specialProperty] = ownKeys(exact({}));
 
-  function assertPasses(validator, element, propName, componentName) {
-    expect(callValidator(validator, element, propName, componentName)).to.equal(null);
+  function assertPasses(tt, validator, element, propName, componentName) {
+    tt.equal(callValidator(validator, element, propName, componentName), null);
   }
 
-  function assertFails(validator, element, propName, componentName) {
-    expect(callValidator(validator, element, propName, componentName)).to.be.instanceOf(Error);
+  function assertFails(tt, validator, element, propName, componentName) {
+    tt.equal(callValidator(validator, element, propName, componentName) instanceof Error, true);
   }
 
-  it('throws when the given propTypes is not an object', () => {
-    expect(() => exact()).to.throw(TypeError);
-    expect(() => exact(undefined)).to.throw(TypeError);
-    expect(() => exact(null)).to.throw(TypeError);
-    expect(() => exact('')).to.throw(TypeError);
-    expect(() => exact(42)).to.throw(TypeError);
-    expect(() => exact(true)).to.throw(TypeError);
-    expect(() => exact(false)).to.throw(TypeError);
-    expect(() => exact(() => {})).to.throw(TypeError);
+  t.test('throws when the given propTypes is not an object', (st) => {
+    st['throws'](() => exact(), TypeError);
+    st['throws'](() => exact(undefined), TypeError);
+    st['throws'](() => exact(null), TypeError);
+    st['throws'](() => exact(''), TypeError);
+    st['throws'](() => exact(42), TypeError);
+    st['throws'](() => exact(true), TypeError);
+    st['throws'](() => exact(false), TypeError);
+    st['throws'](() => exact(() => {}), TypeError);
+    st.end();
   });
 
-  it('throws when the given propTypes has the magic property', () => {
-    expect(() => exact({ [specialProperty]: true })).to.throw(TypeError);
+  t.test('throws when the given propTypes has the magic property', (st) => {
+    st['throws'](() => exact({ [specialProperty]: true }), TypeError);
+    st.end();
   });
 
-  it('returns an object', () => {
-    expect(typeof exact({})).to.equal('object');
+  t.test('returns an object', (st) => {
+    st.equal(typeof exact({}), 'object');
+    st.end();
   });
 
-  it('adds one extra key', () => {
+  t.test('adds one extra key', (st) => {
     const propTypes = { a: 1, b: 2, c: 3 };
     const result = exact(propTypes);
     const resultOwnKeys = ownKeys(result).sort(stringSort);
     const propTypesOwnKeys = ownKeys(propTypes).concat(specialProperty).sort(stringSort);
-    expect(resultOwnKeys).to.eql(propTypesOwnKeys);
+    st.deepEqual(resultOwnKeys, propTypesOwnKeys);
+    st.end();
   });
 
-  it('allows for merging of propTypes that have been processed', () => {
-    expect(() => exact(exact({}))).not.to.throw();
+  t.test('allows for merging of propTypes that have been processed', (st) => {
+    st.doesNotThrow(() => exact(exact({})));
+    st.end();
   });
 
-  describe('exact()', () => {
+  t.test('exact()', (st) => {
     const knownProp = 'a';
 
-    let validator;
-    let Component;
-    beforeEach(() => {
-      Component = class Component extends React.Component {}; // eslint-disable-line no-shadow
+    function setup() {
+      const Component = class Component extends React.Component {}; // eslint-disable-line no-shadow
+      // eslint-disable-next-line react/no-unused-prop-types, react/require-default-props
       Component.propTypes = exact({ [knownProp]() {} });
-      validator = Component.propTypes[specialProperty];
+      const validator = Component.propTypes[specialProperty];
+      return { validator, Component };
+    }
+
+    st.test('adds a function', (s2t) => {
+      const { validator } = setup();
+      s2t.equal(typeof validator, 'function');
+      s2t.end();
     });
 
-    it('adds a function', () => {
-      expect(typeof validator).to.equal('function');
+    st.test('passes via normal propTypes when given no props', (s2t) => {
+      const { Component } = setup();
+      s2t.doesNotThrow(() => <Component />);
+      s2t.end();
     });
 
-    it('passes via normal propTypes when given no props', () => (
-      <Component />
-    ));
-
-    it('passes when given no props', () => {
-      assertPasses(validator, <div />, knownProp, 'Foo div');
+    st.test('passes when given no props', (s2t) => {
+      const { validator } = setup();
+      assertPasses(s2t, validator, <div />, knownProp, 'Foo div');
+      s2t.end();
     });
 
-    it('passes via normal propTypes when given only known props', () => (
-      <Component {...{ [knownProp]: true }} />
-    ));
-
-    it('passes when given only known props', () => {
-      assertPasses(validator, <div {...{ [knownProp]: true }} />, knownProp, 'Foo div');
+    st.test('passes via normal propTypes when given only known props', (s2t) => {
+      const { Component } = setup();
+      s2t.doesNotThrow(() => <Component {...{ [knownProp]: true }} />);
+      s2t.end();
     });
 
-    it('fails via normal propTypes', () => {
-      try {
+    st.test('passes when given only known props', (s2t) => {
+      const { validator } = setup();
+      assertPasses(s2t, validator, <div {...{ [knownProp]: true }} />, knownProp, 'Foo div');
+      s2t.end();
+    });
+
+    st.test('fails via normal propTypes', (s2t) => {
+      const { Component } = setup();
+      s2t['throws'](
         // eslint-disable-next-line no-unused-expressions
-        <Component unknown {...{ [knownProp]: true }} />;
-      } catch (e) {
-        return;
-      }
-      throw new RangeError('did not fail');
+        () => <Component unknown {...{ [knownProp]: true }} />,
+        EvalError,
+      );
+      s2t.end();
     });
 
-    it('fails when given an unknown prop', () => {
-      assertFails(validator, <div unknown {...{ [knownProp]: true }} />, knownProp, 'Foo div');
+    st.test('fails when given an unknown prop', (s2t) => {
+      const { validator } = setup();
+      assertFails(s2t, validator, <div unknown {...{ [knownProp]: true }} />, knownProp, 'Foo div');
+      s2t.end();
     });
   });
+
+  t.end();
 });

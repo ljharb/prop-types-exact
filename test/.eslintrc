@@ -5,6 +5,6 @@
   "rules": {
     "no-console": 0,
     "react/prefer-stateless-function": 0,
-    "dot-notation": [2, { "allowKeywords": true }],
+    "dot-notation": [2, { "allowKeywords": false }],
   },
 }
