@@ -29,6 +29,7 @@ env:
   - REACT=13
   - REACT=14
   - REACT=15
+  - REACT=16
 matrix:
   fast_finish: true
   include:
