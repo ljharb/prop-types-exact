@@ -43,6 +43,4 @@ matrix:
     - node_js: "7"
     - node_js: "5"
     - node_js: "iojs"
-    - node_js: "0.12" # due to has-yarn via install-peerdeps via enzyme helper
-    - node_js: "0.10" # due to has-yarn via install-peerdeps via enzyme helper
     - node_js: "0.8" # due to babel
