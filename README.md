@@ -45,3 +45,7 @@ Simply clone the repo, `npm install`, and run `npm test`
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/prop-types-exact.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=prop-types-exact
+
+## Linting
+
+Linting issues? Please check `propWrapperFunctions` in eslint-plugin-react configuration.
