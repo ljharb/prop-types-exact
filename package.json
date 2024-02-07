@@ -4,7 +4,8 @@
   "description": "For use with React PropTypes. Will error on any prop not explicitly specified.",
   "main": "build",
   "scripts": {
-    "prepublishOnly": "safe-publish-latest && npm run build",
+    "prepack": "npm run build",
+    "prepublishOnly": "safe-publish-latest",
     "prepublish": "not-in-publish || npm run prepublishOnly",
     "preclean": "rimraf build",
     "clean": "npm run clean:coverage",
