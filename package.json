@@ -6,9 +6,9 @@
   "scripts": {
     "prepublishOnly": "safe-publish-latest && npm run build",
     "prepublish": "not-in-publish || npm run prepublishOnly",
-    "clean": "npm run clean:build && npm run clean:coverage",
-    "clean:build": "rimraf build",
-    "prebuild": "npm run clean:build",
+    "preclean": "rimraf build",
+    "clean": "npm run clean:coverage",
+    "prebuild": "npm run preclean",
     "build": "babel src --out-dir build --source-maps",
     "lint": "eslint --ext js,jsx src test",
     "tape": "tape --require babel-register --require ./test/helpers/_failTestsOnErrors",
