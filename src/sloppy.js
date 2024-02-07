@@ -1,5 +1,5 @@
 import ownKeys from 'reflect.ownkeys';
-import exact from './';
+import exact from '.';
 
 const [semaphore] = ownKeys(exact({}));
 

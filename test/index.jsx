@@ -2,7 +2,7 @@ import test from 'tape';
 import React from 'react';
 import ownKeys from 'reflect.ownkeys';
 
-import exact from '../';
+import exact from '..';
 
 import callValidator from './helpers/callValidator';
 
@@ -116,6 +116,7 @@ test('exact', (t) => {
 
     st.test('fails when given an unknown prop', (s2t) => {
       const { validator } = setup();
+      // eslint-disable-next-line react/no-unknown-property
       assertFails(s2t, validator, <div unknown {...{ [knownProp]: true }} />, knownProp, 'Foo div');
       s2t.end();
     });

@@ -1,7 +1,7 @@
 import test from 'tape';
 import React from 'react';
 import sloppy from '../build/sloppy';
-import exact from '../';
+import exact from '..';
 
 test('sloppy', (t) => {
   t.equal(typeof sloppy, 'function', 'export is a function');
