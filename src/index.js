@@ -1,4 +1,5 @@
 import hasOwn from 'hasown';
+import TypeError from 'es-errors/type';
 
 import isPlainObject from './helpers/isPlainObject';
 
