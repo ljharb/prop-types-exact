@@ -14,7 +14,7 @@
     "lint": "eslint --ext js,jsx src test",
     "tape": "tape --require babel-register --require ./test/helpers/_failTestsOnErrors",
     "clean:coverage": "rimraf coverage",
-    "precoverage": "NODE_ENV=test npm run build && npm run clean:coverage",
+    "precoverage": "npm run clean:coverage",
     "coverage": "nyc --show-process-tree npm run --silent tests-only -- --",
     "tests-only": "npm run tape './test/*.*'",
     "pretest": "npm run pretravis && npm run lint",
