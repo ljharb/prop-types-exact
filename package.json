@@ -71,5 +71,8 @@
     "rimraf": "^2.7.1",
     "safe-publish-latest": "^2.0.0",
     "tape": "^5.7.4"
+  },
+  "engines": {
+    "node": ">= 0.8"
   }
 }
