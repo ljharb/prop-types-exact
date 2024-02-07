@@ -6,8 +6,11 @@ const zeroWidthSpace = '\u200b';
 const specialProperty = `prop-types-exact: ${zeroWidthSpace}`;
 const semaphore = typeof Symbol === 'function' && typeof Symbol['for'] === 'function' ? Symbol['for'](specialProperty) : /* istanbul ignore next */ specialProperty;
 
+/** @type {<T extends Function>(fn: T) => T} */
 function brand(fn) {
-  return Object.assign(fn, { [specialProperty]: semaphore });
+  // eslint-disable-next-line no-param-reassign
+  fn[specialProperty] = semaphore;
+  return fn;
 }
 
 function isBranded(value) {
