@@ -1,3 +1,5 @@
+import isArray from 'isarray';
+
 export default function isPlainObject(x) {
-  return x && typeof x === 'object' && !Array.isArray(x);
+  return x && typeof x === 'object' && !isArray(x);
 }
