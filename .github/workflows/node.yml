@@ -17,10 +17,22 @@ jobs:
         with:
           versionsAsRoot: true
           type: majors
-          preset: '>= 4' # fixme: `npm run react` fails in node 0.8; babel-register for tests fails < node 4
+          preset: '>= 0.8'
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ljharb/actions/node/build@main
+        with:
+          build-command: npm run tests:build
+      - name: 'cache build output'
+        uses: actions/cache/save@v4
+        with:
+          path: test-build/
+          key: build-output-${{ github.workflow }}-${{ github.action }}-${{ github.run_id }}
 
   latest:
-    needs: [matrix]
+    needs: [build, matrix]
     name: 'majors'
     runs-on: ubuntu-latest
 
@@ -42,6 +54,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           skip-ls-check: true
+      - name: 'restore build output'
+        uses: actions/cache/restore@v4
+        with:
+          path: test-build/
+          key: build-output-${{ github.workflow }}-${{ github.action }}-${{ github.run_id }}
       - run: npm run react
         name: 'install react ${{ matrix.react }}'
         env:
