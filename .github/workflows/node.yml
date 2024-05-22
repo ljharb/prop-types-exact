@@ -63,12 +63,11 @@ jobs:
         name: 'install react ${{ matrix.react }}'
         env:
           REACT: ${{ matrix.react }}
-      - run: npm run clean:coverage
-      - run: ./node_modules/.bin/nyc --show-process-tree npm run --silent tests-only
+      - run: npm run tests-only
       - uses: codecov/codecov-action@v3.1.5
 
   node:
-    name: 'node'
+    name: node
     needs: [latest]
     runs-on: ubuntu-latest
     steps:
