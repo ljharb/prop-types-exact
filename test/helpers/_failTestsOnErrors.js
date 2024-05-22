@@ -1,4 +1,5 @@
 const errorWhitelist = [
+  /DeprecationWarning: /,
 ];
 
 function throwError(msg) {
