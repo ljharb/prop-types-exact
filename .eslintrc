@@ -1,7 +1,12 @@
 {
-  "extends": "airbnb",
-  "root": true,
-  "rules": {
-    "dot-notation": [2, { "allowKeywords": false }],
-  },
+	"extends": "airbnb",
+	"root": true,
+	"rules": {
+		"dot-notation": [2, { "allowKeywords": false }],
+		"indent": [2, "tab"],
+		"no-tabs": 0,
+	},
+	"ignorePatterns": [
+		"build",
+	],
 }
