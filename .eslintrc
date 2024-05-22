@@ -20,6 +20,14 @@
 					"jsx": true,
 				},
 			},
+			"rules": {
+				"dot-notation": [2, { "allowKeywords": false }],
+			},
+			"settings": {
+				"react": {
+					"version": "detect",
+				},
+			},
 		},
 	],
 }
