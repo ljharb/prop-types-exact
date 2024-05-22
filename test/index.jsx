@@ -67,8 +67,8 @@ test('exact', (t) => {
 		const knownProp = 'a';
 
 		function setup() {
-			const Component = class Component extends React.Component {}; // eslint-disable-line no-shadow
-			// eslint-disable-next-line react/no-unused-prop-types, react/require-default-props
+			const Component = class Component extends React.Component {};
+			// eslint-disable-next-line no-empty-function
 			Component.propTypes = exact({ [knownProp]() {} });
 			const validator = Component.propTypes[specialProperty];
 			return { validator, Component };
@@ -107,7 +107,7 @@ test('exact', (t) => {
 		st.test('fails via normal propTypes', (s2t) => {
 			const { Component } = setup();
 			s2t['throws'](
-				// eslint-disable-next-line no-unused-expressions
+
 				() => <Component unknown {...{ [knownProp]: true }} />,
 				EvalError,
 			);

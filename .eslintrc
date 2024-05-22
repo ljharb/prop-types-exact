@@ -1,12 +1,25 @@
 {
-	"extends": "airbnb",
 	"root": true,
+
+	"extends": "@ljharb",
+
 	"rules": {
-		"dot-notation": [2, { "allowKeywords": false }],
-		"indent": [2, "tab"],
-		"no-tabs": 0,
+		"func-style": "warn",
 	},
-	"ignorePatterns": [
-		"build",
+
+	"overrides": [
+		{
+			"files": "test/**/*.jsx",
+			"extends": [
+				"plugin:react/recommended",
+				"@ljharb/eslint-config/esm",
+				"@ljharb/eslint-config/tests",
+			],
+			"parserOptions": {
+				"ecmaFeatures": {
+					"jsx": true,
+				},
+			},
+		},
 	],
 }

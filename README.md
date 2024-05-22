@@ -33,8 +33,6 @@ Simply clone the repo, `npm install`, and run `npm test`
 
 [package-url]: https://npmjs.org/package/prop-types-exact
 [npm-version-svg]: http://versionbadg.es/ljharb/prop-types-exact.svg
-[travis-svg]: https://travis-ci.org/ljharb/prop-types-exact.svg
-[travis-url]: https://travis-ci.org/ljharb/prop-types-exact
 [deps-svg]: https://david-dm.org/ljharb/prop-types-exact.svg
 [deps-url]: https://david-dm.org/ljharb/prop-types-exact
 [dev-deps-svg]: https://david-dm.org/ljharb/prop-types-exact/dev-status.svg

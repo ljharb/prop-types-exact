@@ -1,19 +1,21 @@
-import secret from 'prop-types/lib/ReactPropTypesSecret';
+'use strict';
 
-export default function callValidator(
+var secret = require('prop-types/lib/ReactPropTypesSecret');
+
+module.exports = function callValidator(
 	validator,
-	{ props },
-	propName = '',
-	componentName = '',
-	location = '',
-	propFullName = '',
+	obj,
+	propName,
+	componentName,
+	location,
+	propFullName
 ) {
 	return validator(
-		props,
-		propName,
-		componentName,
-		location,
-		propFullName,
-		secret,
+		obj.props,
+		propName || '',
+		componentName || '',
+		location || '',
+		propFullName || '',
+		secret
 	);
-}
+};

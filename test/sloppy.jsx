@@ -1,6 +1,6 @@
 import test from 'tape';
 import React from 'react';
-import sloppy from '../build/sloppy';
+import sloppy from '../src/sloppy';
 import exact from '..';
 
 test('sloppy', (t) => {

@@ -1,9 +1,16 @@
-const errorWhitelist = [
-	/DeprecationWarning: /,
+'use strict';
+
+var errorWhitelist = [
+	/DeprecationWarning: /
 ];
 
 function throwError(msg) {
-	if (errorWhitelist.every((regex) => !regex.test(msg))) throw new EvalError(msg);
+	for (var i = 0; i < errorWhitelist.length; i += 1) {
+		if (errorWhitelist[i].test(msg)) {
+			return;
+		}
+	}
+	throw new EvalError(msg);
 }
 
 console.warn = throwError;
