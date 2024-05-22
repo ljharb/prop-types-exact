@@ -1,8 +1,7 @@
 # prop-types-exact <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
-[![Build Status][travis-svg]][travis-url]
-[![dependency status][deps-svg]][deps-url]
-[![dev dependency status][dev-deps-svg]][dev-deps-url]
+[![github actions][actions-image]][actions-url]
+[![coverage][codecov-image]][codecov-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
@@ -45,3 +44,7 @@ Simply clone the repo, `npm install`, and run `npm test`
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/prop-types-exact.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=prop-types-exact
+[codecov-image]: https://codecov.io/gh/ljharb/prop-types-exact/branch/main/graphs/badge.svg
+[codecov-url]: https://app.codecov.io/gh/ljharb/prop-types-exact/
+[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/ljharb/prop-types-exact
+[actions-url]: https://github.com/ljharb/prop-types-exact/actions
