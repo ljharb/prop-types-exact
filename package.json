@@ -1,6 +1,6 @@
 {
 	"name": "prop-types-exact",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "For use with React PropTypes. Will error on any prop not explicitly specified.",
 	"main": "src",
 	"sideEffects": false,

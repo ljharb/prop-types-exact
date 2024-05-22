@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.2](https://github.com/ljharb/prop-types-exact/compare/v1.2.1...v1.2.2) - 2024-05-22
+
+### Commits
+
+- [Refactor] avoid a build process on the implementation code [`5a182fd`](https://github.com/ljharb/prop-types-exact/commit/5a182fdc26b630fd20a917c35aefa249b20bacfb)
+- [Tests] run prebuilt tests [`3a537d3`](https://github.com/ljharb/prop-types-exact/commit/3a537d34487eb1aea90dd08c3dad07aa2e5b8824)
+- [eslint] config cleanup [`ce9ff59`](https://github.com/ljharb/prop-types-exact/commit/ce9ff5939d8b1bb7d8a370e4e450b13ac52c0811)
+- [Tests] upgrade to babel 7 [`a546939`](https://github.com/ljharb/prop-types-exact/commit/a546939c5f475df6717b832c9ab0e940cadf659b)
+- [Tests] always run coverage [`31cc253`](https://github.com/ljharb/prop-types-exact/commit/31cc253d11b9d9c065d9bfa924b886b2a2f8786f)
+- [readme] fix badges [`3c108ac`](https://github.com/ljharb/prop-types-exact/commit/3c108ac921b7c253c6f13f4c768a2e31e66aee74)
+- [meta] add `sideEffects` flag [`518b803`](https://github.com/ljharb/prop-types-exact/commit/518b80335f4ed2bb8fd07936e9e3b22ec9c93445)
+- [Tests] skip `pack` tests [`c6e232d`](https://github.com/ljharb/prop-types-exact/commit/c6e232ddb13303790346b740c87f7913a73c311f)
+- [Tests] skip v0.8 [`29e674a`](https://github.com/ljharb/prop-types-exact/commit/29e674a612b0e904ee0e305d112a99d62e067886)
+- [Fix] in node &lt; 1, `.` needs to be `./` [`64e3fa4`](https://github.com/ljharb/prop-types-exact/commit/64e3fa49f1bee57b2bb82e266585a7325391a39d)
+
 ## [v1.2.1](https://github.com/ljharb/prop-types-exact/compare/v1.2.0...v1.2.1) - 2024-05-22
 
 ### Commits
