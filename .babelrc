@@ -1,12 +1,3 @@
 {
   "presets": ["airbnb"],
-  "plugins": [
-    ["transform-replace-object-assign", { "moduleSpecifier": "object.assign" }],
-    "add-module-exports",
-  ],
-  "env": {
-    "test": {
-      "plugins": ["istanbul"],
-    },
-  },
 }
