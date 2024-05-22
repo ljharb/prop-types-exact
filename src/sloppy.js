@@ -1,7 +1,7 @@
 'use strict';
 
 var ownKeys = require('reflect.ownkeys');
-var exact = require('.');
+var exact = require('./');
 
 var semaphore = ownKeys(exact({}))[0];
 
