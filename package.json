@@ -22,7 +22,9 @@
     "posttest": "aud --production",
     "react": "enzyme-adapter-react-install 16",
     "pretravis": "npm run build && npm run react",
-    "travis": "npm run tests-only"
+    "travis": "npm run tests-only",
+    "version": "auto-changelog && git add CHANGELOG.md",
+    "postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,7 @@
   },
   "devDependencies": {
     "aud": "^2.0.4",
+    "auto-changelog": "^2.4.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.6",
@@ -74,5 +77,14 @@
   },
   "engines": {
     "node": ">= 0.8"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "keepachangelog",
+    "unreleased": false,
+    "commitLimit": false,
+    "backfillLimit": false,
+    "hideCredit": true,
+    "startingVersion": "1.2.1"
   }
 }
