@@ -1,5 +1,10 @@
 'use strict';
 
-// TODO: remove, semver-major
+var isArray = require('isarray');
 
-module.exports = require('../../src/helpers/isPlainObject');
+// TODO: inline, semver-major
+
+/** @type {(x: unknown) => x is object} */
+module.exports = function isPlainObject(x) {
+	return x && typeof x === 'object' && !isArray(x);
+};

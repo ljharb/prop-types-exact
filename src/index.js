@@ -2,14 +2,10 @@
 
 var assign = require('object.assign');
 var hasOwn = require('hasown');
-var isArray = require('isarray');
 var ownKeys = require('reflect.ownkeys');
 var TypeError = require('es-errors/type');
 
-/** @type {(x: unknown) => x is object} */
-function isPlainObject(x) {
-	return x && typeof x === 'object' && !isArray(x);
-}
+var isPlainObject = require('../build/helpers/isPlainObject');
 
 var zeroWidthSpace = '\u200b';
 var specialProperty = 'prop-types-exact: ' + zeroWidthSpace;
