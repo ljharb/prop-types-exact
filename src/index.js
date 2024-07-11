@@ -12,6 +12,9 @@ var specialProperty = 'prop-types-exact: ' + zeroWidthSpace;
 // eslint-disable-next-line no-restricted-properties
 var semaphore = typeof Symbol === 'function' && typeof Symbol['for'] === 'function' ? Symbol['for'](specialProperty) : /* istanbul ignore next */ specialProperty;
 
+var callBound = require('call-bind/callBound');
+var isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
+
 /** @type {<T extends Function>(fn: T) => T} */
 function brand(fn) {
 	// eslint-disable-next-line no-param-reassign
@@ -34,7 +37,7 @@ module.exports = function forbidExtraProps(propTypes) {
 	var forbidden = {};
 	forbidden[specialProperty] = brand(function forbidUnknownProps(props, _, componentName) {
 		var unknownProps = ownKeys(props).filter(function (prop) {
-			return !hasOwn(propTypes, prop);
+			return !hasOwn(propTypes, prop) && isEnumerable(props, prop);
 		});
 		if (unknownProps.length > 0) {
 			return new TypeError(componentName + ': unknown props found: ' + unknownProps.join(', '));

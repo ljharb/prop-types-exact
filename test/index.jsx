@@ -120,6 +120,20 @@ test('exact', (t) => {
 			assertFails(s2t, validator, <div unknown {...{ [knownProp]: true }} />, knownProp, 'Foo div');
 			s2t.end();
 		});
+
+		st.test('does not emit a warning when `key` is passed', (s2t) => {
+			const resultsE = s2t.intercept(console, 'error');
+			const resultsW = s2t.intercept(console, 'warn');
+
+			const { validator } = setup();
+
+			assertPasses(s2t, validator, <div key="key" />, 'key', 'Foo div');
+
+			s2t.deepEqual(resultsE(), [], 'no console errors');
+			s2t.deepEqual(resultsW(), [], 'no console warnings');
+
+			s2t.end();
+		});
 	});
 
 	t.end();
