@@ -59,6 +59,7 @@
 		"npmignore": "^0.3.1",
 		"nyc": "^10.3.2",
 		"prop-types": "^15.8.1",
+		"psl": "=1.9.0",
 		"react": "^0.13 || ^0.14 || ^15 || ^16.0.0-alpha.12",
 		"rimraf": "^2.7.1",
 		"safe-publish-latest": "^2.0.0",
