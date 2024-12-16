@@ -12,7 +12,7 @@ var specialProperty = 'prop-types-exact: ' + zeroWidthSpace;
 // eslint-disable-next-line no-restricted-properties
 var semaphore = typeof Symbol === 'function' && typeof Symbol['for'] === 'function' ? Symbol['for'](specialProperty) : /* istanbul ignore next */ specialProperty;
 
-var callBound = require('call-bind/callBound');
+var callBound = require('call-bound');
 var isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
 
 /** @type {<T extends Function>(fn: T) => T} */
