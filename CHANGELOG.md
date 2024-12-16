@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.6](https://github.com/ljharb/prop-types-exact/compare/v1.2.5...v1.2.6) - 2024-12-16
+
+### Commits
+
+- [Dev Deps] update `@babel/cli`, `auto-changelog`, `eslint-plugin-react`, `tape` [`16fdbca`](https://github.com/ljharb/prop-types-exact/commit/16fdbca82dd654c1008cf0e0402a1c3e4263ef75)
+- [Refactor] use `call-bound` directly [`00bda61`](https://github.com/ljharb/prop-types-exact/commit/00bda61bcb533e5fac6d2cc125639d3c659e08d7)
+- [Tests] replace `aud` with `npm audit` [`9c3ce58`](https://github.com/ljharb/prop-types-exact/commit/9c3ce58de7d7243ec747fe67a99834b7b0c2b4fd)
+- [Deps] update `call-bind` [`67fda6f`](https://github.com/ljharb/prop-types-exact/commit/67fda6f19dee410ba0261a99f0a13d96fd64e02c)
+- [Dev Deps] pin `psl` due to breaking change in a minor version [`d1d049c`](https://github.com/ljharb/prop-types-exact/commit/d1d049c0da698e96b6cab10ef3698764634f378f)
+- [Dev Deps] add missing peer dep [`f3f14fb`](https://github.com/ljharb/prop-types-exact/commit/f3f14fbc082c2f60bcf3efee1502d14194054cc8)
+
 ## [v1.2.5](https://github.com/ljharb/prop-types-exact/compare/v1.2.4...v1.2.5) - 2024-07-11
 
 ### Fixed
