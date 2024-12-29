@@ -1,6 +1,6 @@
 import test from 'tape';
 import React from 'react';
-import ownKeys from 'reflect.ownkeys';
+import ownKeys from 'own-keys';
 
 import exact from '..';
 

@@ -2,7 +2,7 @@
 
 var assign = require('object.assign');
 var hasOwn = require('hasown');
-var ownKeys = require('reflect.ownkeys');
+var ownKeys = require('own-keys');
 var TypeError = require('es-errors/type');
 
 var isPlainObject = require('../build/helpers/isPlainObject');

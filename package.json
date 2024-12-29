@@ -47,7 +47,7 @@
 		"hasown": "^2.0.2",
 		"isarray": "^2.0.5",
 		"object.assign": "^4.1.7",
-		"reflect.ownkeys": "^1.1.4"
+		"own-keys": "^1.0.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.26.4",
