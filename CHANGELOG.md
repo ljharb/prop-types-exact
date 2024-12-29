@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.7](https://github.com/ljharb/prop-types-exact/compare/v1.2.6...v1.2.7) - 2024-12-28
+
+### Commits
+
+- [Dev Deps] update `eslint-plugin-react` [`2575471`](https://github.com/ljharb/prop-types-exact/commit/2575471721936ad394c7e5b685fc2a345e34aae6)
+- [Refactor] use `own-keys` directly [`556524b`](https://github.com/ljharb/prop-types-exact/commit/556524b9acd791e5043cad3d731aae0d35caea26)
+- [meta] add `funding` field [`45152ae`](https://github.com/ljharb/prop-types-exact/commit/45152ae89ff6636e8b47fae028ea5ae663e6d4a3)
+- [Deps] update `object.assign` [`4d40857`](https://github.com/ljharb/prop-types-exact/commit/4d40857ec98a34fa9fdcb336889870f59c5e70bb)
+
 ## [v1.2.6](https://github.com/ljharb/prop-types-exact/compare/v1.2.5...v1.2.6) - 2024-12-16
 
 ### Commits
