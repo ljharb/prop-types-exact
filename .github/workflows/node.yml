@@ -21,15 +21,28 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        react:
+          - 16
+          - 15
+          - 15.4
+          - 0.14
+          - 0.13
     steps:
       - uses: ljharb/actions/node/build@main
         with:
-          build-command: npm run tests:build
-      - name: 'cache build output'
+          build-command: npm run react && npm run tests:build
+        env:
+          REACT: ${{ matrix.react }}
+      - name: 'cache build output and node_modules'
         uses: actions/cache/save@v4
         with:
-          path: test-build/
-          key: build-output-${{ github.workflow }}-${{ github.action }}-${{ github.run_id }}
+          path: |
+            test-build/
+            node_modules/
+          key: build-output-${{ github.workflow }}-${{ github.run_id }}-react-${{ matrix.react }}
 
   latest:
     needs: [build, matrix]
@@ -50,19 +63,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ljharb/actions/node/install@main
-        name: 'nvm install ${{ matrix.node-version }} && npm install'
+        name: 'nvm install ${{ matrix.node-version }}'
         with:
           node-version: ${{ matrix.node-version }}
+          skip-install: true
           skip-ls-check: true
-      - name: 'restore build output'
+      - name: 'restore build output and node_modules'
         uses: actions/cache/restore@v4
         with:
-          path: test-build/
-          key: build-output-${{ github.workflow }}-${{ github.action }}-${{ github.run_id }}
-      - run: npm run react
-        name: 'install react ${{ matrix.react }}'
-        env:
-          REACT: ${{ matrix.react }}
+          path: |
+            test-build/
+            node_modules/
+          key: build-output-${{ github.workflow }}-${{ github.run_id }}-react-${{ matrix.react }}
+          fail-on-cache-miss: true
       - run: npm run tests-only
       - uses: codecov/codecov-action@v3.1.5
 
